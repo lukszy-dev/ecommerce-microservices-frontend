@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
 
 export default function useUser() {
   const [user, setUser] = useState(null);
 
-  useEffect(async () => {
-    if (!user) {
-      const res = await fetch('api/login', {
-        method: 'POST',
-        body: {
-          email: 'test@test.pl',
-          password: 'password'
-        }
+  useEffect(() => {
+    const token = Cookies.get('Authorization');
+    if (!user && token) {
+      const { role, email } = jwtDecode(token);
+      setUser({
+        token,
+        role,
+        email
       })
-      const { token } = await res.json()
-      setUser(token);
     }
   }, [user, setUser]);
 
-  return user
+  return user || {};
 }

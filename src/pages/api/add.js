@@ -1,8 +1,9 @@
 export default async(req, res) => {
-  return await fetch(`${process.env.HOST}/authentication/login`, {
+  return await fetch(`${process.env.HOST}/order/cart/add`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + req.cookies['Authorization']
     },
     body: req.body
   })

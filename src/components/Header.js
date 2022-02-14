@@ -1,7 +1,10 @@
-import Link from 'next/link'
-import { UserIcon, ShoppingBagIcon } from '@heroicons/react/outline'
+import Link from 'next/link';
+import { UserIcon, ShoppingBagIcon } from '@heroicons/react/outline';
+import useUser from '../lib/useUser';
 
 export default function Header() {
+  const { role, email } = useUser();
+
   return (
     <nav className="fixed bg-white h-16 z-10 w-full">
       <div className="w-full h-full container lg:max-w-5xl mx-auto flex flex-wrap items-center justify-between mt-0 py-3 px-4">
@@ -17,12 +20,13 @@ export default function Header() {
             </a>
           </Link>
           <Link href="/login">
-            <a>
+            <a className="flex flex-row items-center">
               <UserIcon className="h-[40px] w-[40px] text-gray-900" />
+              { email && <p>Role: {role}, Email: {email}</p> }
             </a>
           </Link>
         </div>
       </div>
     </nav>
-  )
+  );
 }
