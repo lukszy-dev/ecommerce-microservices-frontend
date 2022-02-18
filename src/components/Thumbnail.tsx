@@ -1,10 +1,13 @@
+import { VFC } from 'react';
 import Link from 'next/link';
-import Cookies from 'js-cookie';
 import { ShoppingBagIcon } from '@heroicons/react/outline';
 
-export default function Thumbnail({ product }) {
+interface ThumbnailProps {
+  product: any;
+}
+
+const Thumbnail: VFC<ThumbnailProps> = ({ product }) => {
   const addToCart = async () => {
-    const token = Cookies.get('Authorization');
     const res = await fetch('/api/add', {
       method: 'POST',
       body: JSON.stringify({
@@ -15,7 +18,7 @@ export default function Thumbnail({ product }) {
   };
 
   return (
-    <div className="relative md:h-60 md:w-60 w-full max-w-lg flex flex-col flex-wrap rounded-3xl shadow-xl cursor-pointer overflow-hidden">
+    <div className="relative md:h-60 md:w-60 w-full max-w-lg flex flex-col flex-wrap rounded-3xl overflow-hidden">
       <div className="h-full">
         <img className="object-cover" src="https://sneakerstudio.pl/pol_pm_Plecak-Fjallraven-Kanken-F23510-166-1021669_1.jpg" />
       </div>
@@ -27,17 +30,19 @@ export default function Thumbnail({ product }) {
         ></div>
         <div className="bottom-0 h-[60px] bg-gradient-to-r from-purple-400 via-pink-500 to-red-400 text-white">
           <Link href={`/product/${product.id}`}>
-            <div className="flex flex-col leading-tight px-6 pt-1">
+            <div className="cursor-pointer flex flex-col leading-tight px-6 pt-1">
               <p>{product.name}</p>
               <p>{product.price}</p>
             </div>
           </Link>
           <ShoppingBagIcon
             onClick={addToCart}
-            className="absolute h-[40px] w-[40px] bottom-[16px] right-[16px] hover:bg-red-500 p-1 rounded-lg"
+            className="cursor-pointer absolute h-[40px] w-[40px] bottom-[16px] right-[16px] hover:bg-red-500 p-1 rounded-lg"
           />
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Thumbnail;
