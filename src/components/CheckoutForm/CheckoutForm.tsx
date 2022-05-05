@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   PaymentElement,
   useStripe,
@@ -7,7 +7,7 @@ import {
 
 import styles from './CheckoutForm.module.css';
 
-const CheckoutForm = () => {
+const CheckoutForm: FC = () => {
   const stripe = useStripe();
   const elements = useElements();
 

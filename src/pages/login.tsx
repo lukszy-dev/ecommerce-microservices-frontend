@@ -16,15 +16,15 @@ const Login: VFC = () => {
       method: 'POST',
       body: JSON.stringify({
         email: email.value,
-        password: password.value
-      })
+        password: password.value,
+      }),
     })
-    .then(response => response.json())
-    .then(({ token }) => {
-      signIn(token);
-      Router.push('/');
-    });
-  }
+      .then((response) => response.json())
+      .then(({ token }) => {
+        signIn(token);
+        Router.push('/');
+      });
+  };
 
   return (
     <div>
@@ -34,7 +34,7 @@ const Login: VFC = () => {
         <Button classes="mt-4">Login</Button>
       </form>
     </div>
-  )
+  );
 };
 
 export default Login;

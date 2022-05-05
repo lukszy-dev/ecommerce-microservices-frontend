@@ -1,8 +1,8 @@
-import { FC } from 'react'
+import { FC } from 'react';
 
 interface ButtonProps {
   onClick?: () => void;
-  classes: string;
+  classes?: string;
 }
 
 const Button: FC<ButtonProps> = ({ children, classes, onClick }) => {

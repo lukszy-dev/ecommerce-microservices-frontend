@@ -1,4 +1,4 @@
-export default async(req, res) => {
+const add = async(req, res) => {
   return await fetch(`${process.env.HOST}/order/cart/add`, {
     method: 'POST',
     headers: {
@@ -10,3 +10,5 @@ export default async(req, res) => {
   .then((data) => data.json())
   .then((data) => res.status(200).json(data))
 }
+
+export default add;

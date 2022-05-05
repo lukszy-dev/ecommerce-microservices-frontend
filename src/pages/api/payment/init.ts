@@ -1,4 +1,4 @@
-export default async(req, res) => {
+const init = async(req, res) => {
   return await fetch(`${process.env.HOST}/order/payment/init`, {
     method: 'POST',
     headers: {
@@ -12,3 +12,5 @@ export default async(req, res) => {
   .then((data) => data.json())
   .then((data) => res.status(200).json(data));
 }
+
+export default init;

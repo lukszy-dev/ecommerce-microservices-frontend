@@ -2,7 +2,7 @@ import { createContext, FC, useCallback, useContext, useMemo, useReducer } from 
 import { initialState, reducer } from './reducer';
 import { AuthContextType, SIGN_IN } from './types';
 
-export const AuthContext = createContext({});
+export const AuthContext = createContext({} as AuthContextType);
 
 export const AuthProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState());
@@ -26,4 +26,4 @@ export const AuthProvider: FC = ({ children }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext) as AuthContextType;
+export const useAuth = () => useContext(AuthContext);

@@ -1,6 +1,12 @@
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import { AuthAction, AuthReducerState, AuthUserProps, SIGN_IN, SIGN_OUT } from './types';
+import {
+  AuthAction,
+  AuthReducerState,
+  AuthUserProps,
+  SIGN_IN,
+  SIGN_OUT,
+} from './types';
 
 const AUTHORIZATION_COOKIE = 'Authorization';
 
@@ -9,7 +15,7 @@ const decodeToken = (token) => {
 
   return {
     email,
-    role
+    role,
   };
 };
 
@@ -23,7 +29,7 @@ export const initialState = () => {
 
   return {
     token,
-    user
+    user,
   };
 };
 

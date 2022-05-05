@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from '../components/CheckoutForm';
+import { Elements } from '@stripe/react-stripe-js';
+import CheckoutForm from '../components/CheckoutForm/CheckoutForm';
 
-const stripePromise = loadStripe('pk_test_51KSffVJFzUzA4eL9jHgfTY9WJNRioeeKi2k8iD2F1o5PjG4VbOTfYFg0cpQOWAAXuYsr8IcM9kxNO5kBWU2T56Db00qbpJhxpP');
+const stripePromise = loadStripe(
+  'pk_test_51KSffVJFzUzA4eL9jHgfTY9WJNRioeeKi2k8iD2F1o5PjG4VbOTfYFg0cpQOWAAXuYsr8IcM9kxNO5kBWU2T56Db00qbpJhxpP'
+);
 
 export default function PaymentPage({ data }) {
   const [clientSecret, setClientSecret] = useState('');
@@ -11,17 +13,17 @@ export default function PaymentPage({ data }) {
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     fetch('api/payment/init', {
-      method: 'POST'
+      method: 'POST',
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.token));
   }, []);
-  
+
   const options = {
     clientSecret,
     appearence: {
-      theme: 'flat'
-    }
+      theme: 'flat',
+    },
   };
 
   return (
@@ -32,7 +34,7 @@ export default function PaymentPage({ data }) {
         </Elements>
       )}
     </>
-  )
+  );
 }
 
 // export async function getServerSideProps() {
